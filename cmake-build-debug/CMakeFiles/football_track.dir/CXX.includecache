@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/graphCuts.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/graphCuts.h
 opencv2/highgui/highgui.hpp
 -
 iostream
@@ -14,43 +14,43 @@ iostream
 fstream
 -
 maxflow/graph.h
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/maxflow/graph.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/maxflow/graph.h
 image.h
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/image.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/image.h
 
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/image.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/image.h
 vector
 -
 opencv2/imgproc/imgproc.hpp
 -
 
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/main.cpp
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/main.cpp
 main.hpp
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/main.hpp
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/main.hpp
 
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/main.hpp
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/main.hpp
 opencv2/opencv.hpp
 -
 image.h
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/image.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/image.h
 string
 -
 queue
 -
 graphCuts.h
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/graphCuts.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/graphCuts.h
 
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/maxflow/block.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/maxflow/block.h
 block.h
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/maxflow/block.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/maxflow/block.h
 stdlib.h
 -
 
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/maxflow/graph.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/maxflow/graph.h
 string.h
 -
 block.h
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/maxflow/block.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/maxflow/block.h
 assert.h
 -
 

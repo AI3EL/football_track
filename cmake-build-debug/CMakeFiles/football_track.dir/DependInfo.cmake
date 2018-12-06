@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/image.cpp" "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/cmake-build-debug/CMakeFiles/football_track.dir/src/image.cpp.o"
-  "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/main.cpp" "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/cmake-build-debug/CMakeFiles/football_track.dir/src/main.cpp.o"
-  "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/src/maxflow/graph.cpp" "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/cmake-build-debug/CMakeFiles/football_track.dir/src/maxflow/graph.cpp.o"
+  "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/image.cpp" "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/cmake-build-debug/CMakeFiles/football_track.dir/src/image.cpp.o"
+  "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/main.cpp" "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/cmake-build-debug/CMakeFiles/football_track.dir/src/main.cpp.o"
+  "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/maxflow/graph.cpp" "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/cmake-build-debug/CMakeFiles/football_track.dir/src/maxflow/graph.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

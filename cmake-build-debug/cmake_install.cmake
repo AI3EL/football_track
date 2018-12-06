@@ -1,4 +1,4 @@
-# Install script for directory: /media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track
+# Install script for directory: /media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

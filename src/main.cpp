@@ -22,8 +22,8 @@ int main(int argn, char **argc) {
     Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2(100);
     Image<uchar> move_mask, move_mask_only_field(I.width(), I.height()), eroded, eroded_dilated, final_I(I.width(), I.height());
 
-    vector<Vec3b> freq_colors;
-    color_cluster team_colors;
+    vector<Vec3b> freq_colors;  // Vector holding the most frequent colors of each potential player detected for each image
+    color_cluster team_colors;  // Color cluster using freq_colors as data, the centroids are the estimated colors of shirts of each team
 
     while(I.width() > 0 && I.height() > 0) {
 
@@ -112,7 +112,7 @@ int main(int argn, char **argc) {
             }
         }
 
-        // Putting bounding boxes where there should be numbers
+        // Defining bounding boxes where there should be numbers
         // Could be optimized by reusing the upper part
         Image<int> cc_final_I, stats_final_I;
         Mat centroids_final_I;
@@ -139,24 +139,28 @@ int main(int argn, char **argc) {
             // imshow("box " + to_string(i), boxes[i]);
         }
 
+        // Color clustering of all the boxes in the image
         vector<color_cluster> clusters(boxes.size());
         vector<Vec3b> most_freq_col(boxes.size());
         vector<int> most_freq_cluster(boxes.size());
         vector<vector<pair<int,int> > > vect_to_im(boxes.size());
         for(int i=0; i<boxes.size(); ++i){
-            clusters[i] = color_cluster(image_to_vect_select(boxes[i], Vec3b(48,154,123), 1000, vect_to_im[i]), 3);
+            // Clustering of colors inside one box
+            clusters[i] = color_cluster(image_to_vect_select(boxes[i], Vec3b(48,154,123), 1000, vect_to_im[i]), 3);  // Delete grass
             k_means_vec3b(clusters[i], 2,  3, 1000, 20);
             most_freq_col[i] = (clusters[i].sizes[0] > clusters[i].sizes[1] ? clusters[i].centroids[0] : clusters[i].centroids[1]);
             most_freq_cluster[i] = (clusters[i].sizes[0] > clusters[i].sizes[1] ? 0 : 1);
             cout << "Box " + to_string(i) << endl;
             for(int j=0; j<clusters[i].centroids.size();++j){
-              cout << clusters[i].centroids[j] << " " << clusters[i].sizes[j] << endl;
+              cout << "Color : " << clusters[i].centroids[j] << ", size of the cluster : " << clusters[i].sizes[j] << endl;
             }
             cout << endl;
         }
 
+        // Add the most frequent colors of this image to the vector of most frequent colors in all the images
         freq_colors.insert(freq_colors.begin(),most_freq_col.begin(), most_freq_col.end());
 
+        // Compute the clustering over team_colors once and for all when we have enough data
         if(click_num == 10){
             team_colors = color_cluster(freq_colors,2);
             k_means_vec3b(team_colors, 2, 3, 1000, 20);
@@ -169,11 +173,14 @@ int main(int argn, char **argc) {
          * 1/ clustering outputs 2 centroids and each is near a team color (two different team on same picture)
          * 2/ clustering outputs 2 far away cc (line and a white player)
         */
-        vector<Image<Vec3b> > NB_boxes;
+
+        // Once we have an approximation of team colors, we try to detect the numbers by looking at the less frequent color in the cluster
         if(click_num > 10){
+            vector<Image<Vec3b> > NB_boxes;
             size_t th = 3000 ;
             for(int i=0; i<boxes.size(); ++i){
                 NB_boxes.emplace_back(boxes[i].width(), boxes[i].height(), Vec3b(0,255,0));
+                // TODO : change to detect when there are no player
                 int team = (sqdst(most_freq_col[i], team_colors.centroids[0]) > sqdst(most_freq_col[i], team_colors.centroids[1]) ? 1 : 0);
                 for(int j=0; j<clusters[i].data.size(); j++){
                     NB_boxes[i](vect_to_im[i][j].first, vect_to_im[i][j].second) = (clusters[i].labels[j] == most_freq_cluster[i] ? Vec3b(0,0,0) : Vec3b(255,255,255));
@@ -182,10 +189,6 @@ int main(int argn, char **argc) {
                 imshow("NB_box " + to_string(i), NB_boxes[i]);
             }
         }
-
-
-
-
 
         imshow_quarter("I",I);
         /*
@@ -254,6 +257,12 @@ void compute_centroids(const vector<Vec3b>& points, vector<int>& labels, vector<
     }
 }
 
+/*
+ * K : number of clusters
+ * rand_rep : number of time we repeat the algorithm with another random intialization
+ * eps : when compactness is below we stop
+ * max_rep : when rep is above we stop
+ */
 void k_means_vec3b(color_cluster& cluster, size_t K, size_t rand_rep, double eps, size_t max_rep){
     if(!cluster.data.size()){
         cout << " Empty dataset ! " << endl;

@@ -11,6 +11,7 @@ using namespace cv;
 using namespace std;
 
 
+// Struct to hold informations about color clusters in an image
 struct color_cluster{
     size_t K;
     vector<int> labels, sizes;
@@ -29,7 +30,7 @@ void compute_centroids(const vector<Vec3b>& points, vector<int>& labels, vector<
 void k_means_vec3b(color_cluster& cluster, size_t K, size_t rand_rep, double eps, size_t max_rep);
 
 
-
+// Put all pixels of an image in a vector
 template<typename T>
 vector<T> image_to_vect(const Image<T>& inpt){
     vector<T> res;
@@ -41,6 +42,7 @@ vector<T> image_to_vect(const Image<T>& inpt){
     return res;
 }
 
+// Put some pixels of an image in a vector and keep in vect_to_im indices of the selected pixels
 vector<Vec3b> image_to_vect_select(const Image<Vec3b>& inpt, Vec3b color, float dst, vector<pair<int, int> >& vect_to_im);
 
 // Shows the image in a miniature
