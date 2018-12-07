@@ -38,6 +38,7 @@ public:
     explicit Image(const Mat &A) : Mat(A) {}
 
     Image(int w, int h) : Mat(h, w, pixel_type<T>::value) {}
+
     Image(int w, int h, T v) : Mat(h, w, pixel_type<T>::value, v) {}
 
     // Accessors
