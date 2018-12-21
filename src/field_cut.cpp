@@ -1,6 +1,6 @@
 #include "field_cut.h"
 
-void field_cut(const Image<Vec3b>& I, const int& blur_factor, Image<uchar>& field_mask_blur) {
+void field_blur_cut(const Image<Vec3b>& I, const int& blur_factor, Image<uchar>& field_mask_blur) {
     // Loss of details to have faster graph cut
     Image<Vec3b> I_blur;
     resize(I, I_blur, Size(I.width() / blur_factor, I.height() / blur_factor));

@@ -9,6 +9,8 @@ int main(int argn, char **argc) {
     const int EROSION_TYPE = MORPH_ELLIPSE;
     const size_t EROSION_SIZE = 4;
     const size_t DILATE_SIZE = EROSION_SIZE + 3;
+    const size_t PREPROCESSING_TIME = 10;
+    const size_t DETECTION_RATE = 5;
 
     VideoCapture cap("../data/footdata2.mp4"); // Ouvre la vidéo
     if (!cap.isOpened()) {  // Vérifie l'ouverture
@@ -16,21 +18,22 @@ int main(int argn, char **argc) {
         return -1;
     }
 
-    Image<Vec3b> I;
+    Image<Vec3b> I, next_I;
     cap >> I;
 
     Ptr<BackgroundSubtractor> pMOG2 = createBackgroundSubtractorMOG2(100);
     Image<uchar> move_mask, move_mask_only_field(I.width(), I.height()), eroded, eroded_dilated, final_I(I.width(),
                                                                                                          I.height());
-
+    vector<Point2f> tracked_points;
+    vector<Player> players;
     vector<Vec3b> freq_colors;  // Vector holding the most frequent colors of each potential player detected for each image
     color_cluster team_colors;  // Color cluster using freq_colors as data, the centroids are the estimated colors of shirts of each team
 
     while (I.width() > 0 && I.height() > 0) {
 
-        cout << "Click number : " << click_num++ << endl;
+        cout << "Click number : " << ++click_num << endl;
 
-        for (int i = 0; i < FPC; i++) cap >> I;
+        for (int i = 0; i < FPC; i++) cap >> next_I;
 
         Image<uchar> field_mask_blur;
         field_blur_cut(I, BLUR_FACTOR, field_mask_blur);
@@ -119,77 +122,209 @@ int main(int argn, char **argc) {
             // imshow("box " + to_string(i), boxes[i]);
         }
 
-        // Color clustering of all the boxes in the image
-        vector<color_cluster> clusters(boxes.size());
-        vector<Vec3b> most_freq_col(boxes.size());
-        vector<int> most_freq_cluster(boxes.size());
-        vector<vector<pair<int, int> > > vect_to_im(boxes.size());
-        for (int i = 0; i < boxes.size(); ++i) {
-            // Clustering of colors inside one box
-            clusters[i] = color_cluster(image_to_vect_select(boxes[i], Vec3b(48, 154, 123), 1000, vect_to_im[i]),
-                                        3);  // Delete grass
-            k_means_vec3b(clusters[i], 2, 3, 1000, 20);
-            most_freq_col[i] = (clusters[i].sizes[0] > clusters[i].sizes[1] ? clusters[i].centroids[0]
-                                                                            : clusters[i].centroids[1]);
-            most_freq_cluster[i] = (clusters[i].sizes[0] > clusters[i].sizes[1] ? 0 : 1);
-            cout << "Box " + to_string(i) << endl;
-            for (int j = 0; j < clusters[i].centroids.size(); ++j) {
-                cout << "Color : " << clusters[i].centroids[j] << ", size of the cluster : " << clusters[i].sizes[j]
-                     << endl;
-            }
-            cout << endl;
-        }
-
-        // Add the most frequent colors of this image to the vector of most frequent colors in all the images
-        freq_colors.insert(freq_colors.begin(), most_freq_col.begin(), most_freq_col.end());
-
-        // Compute the clustering over team_colors once and for all when we have enough data
-        if (click_num == 10) {
-            team_colors = color_cluster(freq_colors, 2);
-            k_means_vec3b(team_colors, 2, 3, 1000, 20);
-            cout << "Color of team 0 : " << team_colors.centroids[0] << " " << team_colors.sizes[0] << endl;
-            cout << "Color of team 1 " << team_colors.centroids[1] << " " << team_colors.sizes[1] << endl;
-        }
-
-        /*
-         * TODO : add collision detector when :
-         * 1/ clustering outputs 2 centroids and each is near a team color (two different team on same picture)
-         * 2/ clustering outputs 2 far away cc (line and a white player)
-        */
-
-        // Once we have an approximation of team colors, we try to detect the numbers by looking at the less frequent color in the cluster
-        if (click_num > 10) {
-            vector<Image<Vec3b> > NB_boxes;
-            size_t th = 3000;
+        // Color clustering of all the boxes in the image until preprocessing time
+        if(click_num < PREPROCESSING_TIME){
+            vector<color_cluster> clusters(boxes.size());
+            vector<Vec3b> most_freq_col(boxes.size());
+            vector<int> most_freq_cluster(boxes.size());
+            vector<vector<pair<int, int> > > vect_to_im(boxes.size());
             for (int i = 0; i < boxes.size(); ++i) {
-                NB_boxes.emplace_back(boxes[i].width(), boxes[i].height(), Vec3b(0, 255, 0));
-                // TODO : change to detect when there are no player
-                int team = (sqdst(most_freq_col[i], team_colors.centroids[0]) >
-                            sqdst(most_freq_col[i], team_colors.centroids[1]) ? 1 : 0);
-                for (int j = 0; j < clusters[i].data.size(); j++) {
-                    NB_boxes[i](vect_to_im[i][j].first, vect_to_im[i][j].second) = (clusters[i].labels[j] ==
-                                                                                    most_freq_cluster[i] ? Vec3b(0, 0,
-                                                                                                                 0)
-                                                                                                         : Vec3b(255,
-                                                                                                                 255,
-                                                                                                                 255));
+                // Clustering of colors inside one box
+                clusters[i] = color_cluster(image_to_vect_select(boxes[i], Vec3b(48, 154, 123), 1000, vect_to_im[i]),
+                                            3);  // Delete grass
+                k_means_vec3b(clusters[i], 2, 3, 1000, 20);
+                most_freq_col[i] = (clusters[i].sizes[0] > clusters[i].sizes[1] ? clusters[i].centroids[0]
+                                                                                : clusters[i].centroids[1]);
+                most_freq_cluster[i] = (clusters[i].sizes[0] > clusters[i].sizes[1] ? 0 : 1);
+                /*
+                cout << "Box " + to_string(i) << endl;
+                for (int j = 0; j < clusters[i].centroids.size(); ++j) {
+                    cout << "Color : " << clusters[i].centroids[j] << ", size of the cluster : " << clusters[i].sizes[j]
+                         << endl;
                 }
-                cout << "Team of box " + to_string(i) + " : " + to_string(team) << endl;
-                imshow("NB_box " + to_string(i), NB_boxes[i]);
+                 cout << endl;
+                */
             }
+
+            // Add the most frequent colors of this image to the vector of most frequent colors in all the images
+            freq_colors.insert(freq_colors.begin(), most_freq_col.begin(), most_freq_col.end());
         }
 
-        imshow_quarter("I", I);
         /*
-        imshow_quarter("I_only_field",I_only_field);
-        imshow_quarter("field_mask",field_mask);
-        imshow_quarter("move_mask", move_mask);
-        imshow_quarter("move_mask_only_field", move_mask_only_field);
-        imshow_quarter("final_I", final_I);
-        imshow_quarter("eroded_dilated", eroded_dilated);
-        */
-        waitKey();
-        cout << endl;
+         * Once we have an approximation of team colors, we try to detect the numbers by looking at the less frequent
+         * color in the clusters.
+         * We also launch the tracking at the same time
+         */
+        if (click_num >= PREPROCESSING_TIME) {
+
+
+            if (click_num == PREPROCESSING_TIME) {
+                // Compute the clustering over team_colors once and for all when we have enough data
+                team_colors = color_cluster(freq_colors, 2);
+                k_means_vec3b(team_colors, 2, 3, 1000, 20);
+                cout << "Color of team 0 : " << team_colors.centroids[0] << " " << team_colors.sizes[0] << endl;
+                cout << "Color of team 1 " << team_colors.centroids[1] << " " << team_colors.sizes[1] << endl;
+
+                // Find tracked points
+
+                // Defining masks to detect good features to track on each player
+                vector<Image<uchar> > boxes_mask;
+                for(int i=0; i<boundRect.size();i++){
+                    boxes_mask.emplace_back(I.width(), I.height(), uchar(0));
+                    for(int x=0; x<boundRect[i].width;x++){
+                        for(int y=0; y<boundRect[i].height;y++){
+                            boxes_mask[i](boundRect[i].x + x, boundRect[i].y + y) = uchar(255);
+                        }
+                    }
+                }
+
+                Image<uchar> I_bw(final_I.width(), final_I.height());
+                cvtColor(I, I_bw, CV_BGR2GRAY);
+                for (int i = 0; i < boxes_mask.size(); ++i) {
+                    vector<Point2f> answer;
+                    cv::goodFeaturesToTrack(I_bw, answer, 1, 0.01, 0.1, boxes_mask[i]);
+                    tracked_points.insert(tracked_points. begin(), answer.begin(), answer.end());
+                }
+
+                // Creating players
+                for(int i=0; i<tracked_points.size();i++){
+                    players.emplace_back(Point(boundRect[i].x + boundRect[i].width, boundRect[i].y + boundRect[i].height), i, i);
+                }
+            }
+
+            // Detect appearing players
+            if((click_num - PREPROCESSING_TIME) > 0 && (click_num - PREPROCESSING_TIME) % DETECTION_RATE == 0){
+
+                // Finding which bounded box are already tracked
+                vector<Image<Vec3b> > new_boxes;
+                vector<int> rect_assignment(boundRect.size(), -1);
+                for(int i=0; i<players.size(); i++){
+                    for(int j=0; j<boundRect.size();j++){
+                        if(boundRect[j].contains(tracked_points[i])){
+                            rect_assignment[j] = i;
+                            new_boxes.push_back(boxes[i]);
+                        }
+                    }
+                }
+
+                // Defining masks to detect good features to track on each player
+                vector<Image<uchar> > boxes_mask;
+                for(int i=0; i<boundRect.size();i++){
+                    if(rect_assignment[i] != -1){
+                        boxes_mask.emplace_back(I.width(), I.height(), uchar(0));
+                        for(int x=0; x<boundRect[i].width;x++){
+                            for(int y=0; y<boundRect[i].height;y++){
+                                boxes_mask[boxes_mask.size()-1](boundRect[i].x + x, boundRect[i].y + y) = uchar(255);
+                            }
+                        }
+                    }
+                }
+
+                Image<uchar> I_bw(final_I.width(), final_I.height());
+                cvtColor(I, I_bw, CV_BGR2GRAY);
+                vector<Point2f> new_tracked_points;
+                for (int i = 0; i < boxes_mask.size(); ++i) {
+                    vector<Point2f> answer;
+                    cv::goodFeaturesToTrack(I_bw, answer, 1, 0.01, 0.1, boxes_mask[i]);
+                    new_tracked_points.insert(tracked_points. begin(), answer.begin(), answer.end());
+                }
+
+                // Adding players
+                size_t track_point_id = tracked_points.size();
+                for(int i=0; i<tracked_points.size();i++){
+                    if(rect_assignment[i] != -1){
+                        tracked_points.push_back(new_tracked_points[track_point_id]);
+                        track_point_id++;
+                        players.emplace_back(Point(boundRect[i].x + boundRect[i].width, boundRect[i].y + boundRect[i].height), i, track_point_id);
+                    }
+                }
+
+                // Boxes used to detect numbers : Black = main shirt color, Green = grass, White = wr
+                vector<Image<Vec3b> > tricolor_boxes;
+                vector<Image<uchar> > eroded_boxes(new_boxes.size()); // Eroded boxes to help tesseract
+
+                // Creates readable number image for tesseract and finds team of shirt
+                for (int i = 0; i < new_boxes.size(); ++i) {
+                    if()
+                    tricolor_boxes.emplace_back(new_boxes[i].width(), new_boxes[i].height(), Vec3b(0, 255, 0));
+                    // TODO : change to detect when there are no player
+                    int team = (sqdst(most_freq_col[i], team_colors.centroids[0]) >
+                                sqdst(most_freq_col[i], team_colors.centroids[1]) ? 1 : 0);
+                    for (int j = 0; j < clusters[i].data.size(); j++) {
+                        tricolor_boxes[i](vect_to_im[i][j].first, vect_to_im[i][j].second) = (clusters[i].labels[j] ==
+                                                                                              most_freq_cluster[i] ? Vec3b(0, 0,
+                                                                                                                           0)
+                                                                                                                   : Vec3b(255,
+                                                                                                                           255,
+                                                                                                                           255));
+                    }
+                    cout << "Team of box " + to_string(i) + " : " + to_string(team) << endl;
+                    cvtColor(tricolor_boxes[i], eroded_boxes[i], CV_BGR2GRAY);
+                    for(int x=0; x<eroded_boxes[i].width(); x++){
+                        for(int y=0; y<eroded_boxes[i].height(); y++){
+                            eroded_boxes[i](x,y) = (eroded_boxes[i](x,y) == uchar(255) ? uchar(255) : uchar(0));
+                        }
+                    }
+                }
+
+
+            }
+
+            cout << "Number of tracked points : " << tracked_points.size() << endl;
+
+            // Compute optical flow
+            Image<uchar> I_uchar, next_I_uchar;
+            cvtColor(I, I_uchar, CV_BGR2GRAY);
+            cvtColor(next_I, next_I_uchar, CV_BGR2GRAY);
+            vector<Point2f> next_tracked_points(tracked_points.size());
+            vector<uchar> status(tracked_points.size());
+            vector<float> optical_err(tracked_points.size());
+            calcOpticalFlowPyrLK(I_uchar, next_I_uchar, tracked_points, next_tracked_points, status, optical_err);
+
+            // Erase lost players and tidy next_tracked_points
+            int new_track_pt_id = 0;
+            for(auto it=players.begin(); it!=players.end();){
+                if(status[it->tracking_point_id]){
+                    it->age++;
+                    it->tracking_point_id = new_track_pt_id;
+                    new_track_pt_id++;
+                    it++;
+                }
+                else{
+                    it = players.erase(it);
+                    next_tracked_points.erase(next_tracked_points.begin() + new_track_pt_id);
+                }
+            }
+
+            //Show tracked points
+            Image<Vec3b> interest(I.clone());
+            for(int i=0;i<tracked_points.size(); i++){
+                cv::circle(interest, tracked_points.at(i), 10, Scalar(255,0,0), 4);
+            }
+            tracked_points = next_tracked_points;
+            imshow_quarter("interest", interest);
+            waitKey();
+        }
+
+            // Erosion of numbers
+            size_t EROSION_SIZE_NUM = 1;
+            Mat erode_ker_num = getStructuringElement(EROSION_TYPE,
+                                                  Size(2 * EROSION_SIZE_NUM + 1, 2 * EROSION_SIZE_NUM + 1),
+                                                  Point(EROSION_SIZE_NUM, EROSION_SIZE_NUM));
+            for (int i = 0; i < tricolor_boxes.size(); ++i) {
+                erode(eroded_boxes[i], eroded_boxes[i], erode_ker_num);
+                imshow("NB_box " + to_string(i), eroded_boxes[i]);
+            }
+
+            /*
+                imshow_quarter("I_only_field",I_only_field);
+                imshow_quarter("field_mask",field_mask);
+                imshow_quarter("move_mask", move_mask);
+                imshow_quarter("move_mask_only_field", move_mask_only_field);
+                imshow_quarter("eroded_dilated", eroded_dilated);
+                */
+
+    I = Image<Vec3b>(next_I.clone());
     }
     waitKey(0);
 

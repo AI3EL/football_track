@@ -123,6 +123,114 @@ football_track/fast:
 	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/build
 .PHONY : football_track/fast
 
+src/Player.o: src/Player.cpp.o
+
+.PHONY : src/Player.o
+
+# target to build an object file
+src/Player.cpp.o:
+	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/src/Player.cpp.o
+.PHONY : src/Player.cpp.o
+
+src/Player.i: src/Player.cpp.i
+
+.PHONY : src/Player.i
+
+# target to preprocess a source file
+src/Player.cpp.i:
+	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/src/Player.cpp.i
+.PHONY : src/Player.cpp.i
+
+src/Player.s: src/Player.cpp.s
+
+.PHONY : src/Player.s
+
+# target to generate assembly for a file
+src/Player.cpp.s:
+	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/src/Player.cpp.s
+.PHONY : src/Player.cpp.s
+
+src/clustering.o: src/clustering.cpp.o
+
+.PHONY : src/clustering.o
+
+# target to build an object file
+src/clustering.cpp.o:
+	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/src/clustering.cpp.o
+.PHONY : src/clustering.cpp.o
+
+src/clustering.i: src/clustering.cpp.i
+
+.PHONY : src/clustering.i
+
+# target to preprocess a source file
+src/clustering.cpp.i:
+	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/src/clustering.cpp.i
+.PHONY : src/clustering.cpp.i
+
+src/clustering.s: src/clustering.cpp.s
+
+.PHONY : src/clustering.s
+
+# target to generate assembly for a file
+src/clustering.cpp.s:
+	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/src/clustering.cpp.s
+.PHONY : src/clustering.cpp.s
+
+src/field_cut.o: src/field_cut.cpp.o
+
+.PHONY : src/field_cut.o
+
+# target to build an object file
+src/field_cut.cpp.o:
+	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/src/field_cut.cpp.o
+.PHONY : src/field_cut.cpp.o
+
+src/field_cut.i: src/field_cut.cpp.i
+
+.PHONY : src/field_cut.i
+
+# target to preprocess a source file
+src/field_cut.cpp.i:
+	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/src/field_cut.cpp.i
+.PHONY : src/field_cut.cpp.i
+
+src/field_cut.s: src/field_cut.cpp.s
+
+.PHONY : src/field_cut.s
+
+# target to generate assembly for a file
+src/field_cut.cpp.s:
+	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/src/field_cut.cpp.s
+.PHONY : src/field_cut.cpp.s
+
+src/graphCuts.o: src/graphCuts.cpp.o
+
+.PHONY : src/graphCuts.o
+
+# target to build an object file
+src/graphCuts.cpp.o:
+	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/src/graphCuts.cpp.o
+.PHONY : src/graphCuts.cpp.o
+
+src/graphCuts.i: src/graphCuts.cpp.i
+
+.PHONY : src/graphCuts.i
+
+# target to preprocess a source file
+src/graphCuts.cpp.i:
+	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/src/graphCuts.cpp.i
+.PHONY : src/graphCuts.cpp.i
+
+src/graphCuts.s: src/graphCuts.cpp.s
+
+.PHONY : src/graphCuts.s
+
+# target to generate assembly for a file
+src/graphCuts.cpp.s:
+	$(MAKE) -f CMakeFiles/football_track.dir/build.make CMakeFiles/football_track.dir/src/graphCuts.cpp.s
+.PHONY : src/graphCuts.cpp.s
+
 src/image.o: src/image.cpp.o
 
 .PHONY : src/image.o
@@ -213,6 +321,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... football_track"
+	@echo "... src/Player.o"
+	@echo "... src/Player.i"
+	@echo "... src/Player.s"
+	@echo "... src/clustering.o"
+	@echo "... src/clustering.i"
+	@echo "... src/clustering.s"
+	@echo "... src/field_cut.o"
+	@echo "... src/field_cut.i"
+	@echo "... src/field_cut.s"
+	@echo "... src/graphCuts.o"
+	@echo "... src/graphCuts.i"
+	@echo "... src/graphCuts.s"
 	@echo "... src/image.o"
 	@echo "... src/image.i"
 	@echo "... src/image.s"

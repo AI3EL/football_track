@@ -83,9 +83,22 @@ CMakeFiles/football_track.dir/src/image.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/football_track.dir/src/image.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/image.cpp" -o CMakeFiles/football_track.dir/src/image.cpp.s
 
+CMakeFiles/football_track.dir/src/graphCuts.cpp.o: CMakeFiles/football_track.dir/flags.make
+CMakeFiles/football_track.dir/src/graphCuts.cpp.o: ../src/graphCuts.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/football_track.dir/src/graphCuts.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/football_track.dir/src/graphCuts.cpp.o -c "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/graphCuts.cpp"
+
+CMakeFiles/football_track.dir/src/graphCuts.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/football_track.dir/src/graphCuts.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/graphCuts.cpp" > CMakeFiles/football_track.dir/src/graphCuts.cpp.i
+
+CMakeFiles/football_track.dir/src/graphCuts.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/football_track.dir/src/graphCuts.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/graphCuts.cpp" -o CMakeFiles/football_track.dir/src/graphCuts.cpp.s
+
 CMakeFiles/football_track.dir/src/maxflow/graph.cpp.o: CMakeFiles/football_track.dir/flags.make
 CMakeFiles/football_track.dir/src/maxflow/graph.cpp.o: ../src/maxflow/graph.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/football_track.dir/src/maxflow/graph.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/football_track.dir/src/maxflow/graph.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/football_track.dir/src/maxflow/graph.cpp.o -c "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/maxflow/graph.cpp"
 
 CMakeFiles/football_track.dir/src/maxflow/graph.cpp.i: cmake_force
@@ -96,18 +109,65 @@ CMakeFiles/football_track.dir/src/maxflow/graph.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/football_track.dir/src/maxflow/graph.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/maxflow/graph.cpp" -o CMakeFiles/football_track.dir/src/maxflow/graph.cpp.s
 
+CMakeFiles/football_track.dir/src/field_cut.cpp.o: CMakeFiles/football_track.dir/flags.make
+CMakeFiles/football_track.dir/src/field_cut.cpp.o: ../src/field_cut.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/football_track.dir/src/field_cut.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/football_track.dir/src/field_cut.cpp.o -c "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/field_cut.cpp"
+
+CMakeFiles/football_track.dir/src/field_cut.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/football_track.dir/src/field_cut.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/field_cut.cpp" > CMakeFiles/football_track.dir/src/field_cut.cpp.i
+
+CMakeFiles/football_track.dir/src/field_cut.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/football_track.dir/src/field_cut.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/field_cut.cpp" -o CMakeFiles/football_track.dir/src/field_cut.cpp.s
+
+CMakeFiles/football_track.dir/src/clustering.cpp.o: CMakeFiles/football_track.dir/flags.make
+CMakeFiles/football_track.dir/src/clustering.cpp.o: ../src/clustering.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/football_track.dir/src/clustering.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/football_track.dir/src/clustering.cpp.o -c "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/clustering.cpp"
+
+CMakeFiles/football_track.dir/src/clustering.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/football_track.dir/src/clustering.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/clustering.cpp" > CMakeFiles/football_track.dir/src/clustering.cpp.i
+
+CMakeFiles/football_track.dir/src/clustering.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/football_track.dir/src/clustering.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/clustering.cpp" -o CMakeFiles/football_track.dir/src/clustering.cpp.s
+
+CMakeFiles/football_track.dir/src/Player.cpp.o: CMakeFiles/football_track.dir/flags.make
+CMakeFiles/football_track.dir/src/Player.cpp.o: ../src/Player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/football_track.dir/src/Player.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/football_track.dir/src/Player.cpp.o -c "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/Player.cpp"
+
+CMakeFiles/football_track.dir/src/Player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/football_track.dir/src/Player.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/Player.cpp" > CMakeFiles/football_track.dir/src/Player.cpp.i
+
+CMakeFiles/football_track.dir/src/Player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/football_track.dir/src/Player.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/Player.cpp" -o CMakeFiles/football_track.dir/src/Player.cpp.s
+
 # Object files for target football_track
 football_track_OBJECTS = \
 "CMakeFiles/football_track.dir/src/main.cpp.o" \
 "CMakeFiles/football_track.dir/src/image.cpp.o" \
-"CMakeFiles/football_track.dir/src/maxflow/graph.cpp.o"
+"CMakeFiles/football_track.dir/src/graphCuts.cpp.o" \
+"CMakeFiles/football_track.dir/src/maxflow/graph.cpp.o" \
+"CMakeFiles/football_track.dir/src/field_cut.cpp.o" \
+"CMakeFiles/football_track.dir/src/clustering.cpp.o" \
+"CMakeFiles/football_track.dir/src/Player.cpp.o"
 
 # External object files for target football_track
 football_track_EXTERNAL_OBJECTS =
 
 football_track: CMakeFiles/football_track.dir/src/main.cpp.o
 football_track: CMakeFiles/football_track.dir/src/image.cpp.o
+football_track: CMakeFiles/football_track.dir/src/graphCuts.cpp.o
 football_track: CMakeFiles/football_track.dir/src/maxflow/graph.cpp.o
+football_track: CMakeFiles/football_track.dir/src/field_cut.cpp.o
+football_track: CMakeFiles/football_track.dir/src/clustering.cpp.o
+football_track: CMakeFiles/football_track.dir/src/Player.cpp.o
 football_track: CMakeFiles/football_track.dir/build.make
 football_track: /usr/local/lib/libopencv_objdetect.so.3.4.2
 football_track: /usr/local/lib/libopencv_ml.so.3.4.2
@@ -127,7 +187,7 @@ football_track: /usr/local/lib/libopencv_imgcodecs.so.3.4.2
 football_track: /usr/local/lib/libopencv_imgproc.so.3.4.2
 football_track: /usr/local/lib/libopencv_core.so.3.4.2
 football_track: CMakeFiles/football_track.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable football_track"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable football_track"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/football_track.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

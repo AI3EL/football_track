@@ -86,6 +86,27 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/media/abel/DATA/Cours/3A/INF573 Analyse d&apos;images .../Project/football_track_ai3el/src/Player.cpp">
+			<Option target="football_track"/>
+		</Unit>
+		<Unit filename="/media/abel/DATA/Cours/3A/INF573 Analyse d&apos;images .../Project/football_track_ai3el/src/Player.hpp">
+			<Option target="football_track"/>
+		</Unit>
+		<Unit filename="/media/abel/DATA/Cours/3A/INF573 Analyse d&apos;images .../Project/football_track_ai3el/src/clustering.cpp">
+			<Option target="football_track"/>
+		</Unit>
+		<Unit filename="/media/abel/DATA/Cours/3A/INF573 Analyse d&apos;images .../Project/football_track_ai3el/src/clustering.h">
+			<Option target="football_track"/>
+		</Unit>
+		<Unit filename="/media/abel/DATA/Cours/3A/INF573 Analyse d&apos;images .../Project/football_track_ai3el/src/field_cut.cpp">
+			<Option target="football_track"/>
+		</Unit>
+		<Unit filename="/media/abel/DATA/Cours/3A/INF573 Analyse d&apos;images .../Project/football_track_ai3el/src/field_cut.h">
+			<Option target="football_track"/>
+		</Unit>
+		<Unit filename="/media/abel/DATA/Cours/3A/INF573 Analyse d&apos;images .../Project/football_track_ai3el/src/graphCuts.cpp">
+			<Option target="football_track"/>
+		</Unit>
 		<Unit filename="/media/abel/DATA/Cours/3A/INF573 Analyse d&apos;images .../Project/football_track_ai3el/src/graphCuts.h">
 			<Option target="football_track"/>
 		</Unit>

@@ -7,6 +7,7 @@
 #include <queue>
 #include "clustering.h"
 #include "field_cut.h"
+#include "Player.hpp"
 
 using namespace cv;
 using namespace std;

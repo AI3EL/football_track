@@ -6,6 +6,24 @@
 
 #IncludeRegexTransform: 
 
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/Player.hpp
+opencv2/opencv.hpp
+-
+
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/clustering.h
+opencv2/opencv.hpp
+-
+vector
+-
+
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/field_cut.h
+opencv2/opencv.hpp
+-
+image.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/image.h
+graphCuts.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/graphCuts.h
+
 /media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/graphCuts.h
 opencv2/highgui/highgui.hpp
 -
@@ -37,8 +55,12 @@ string
 -
 queue
 -
-graphCuts.h
-/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/graphCuts.h
+clustering.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/clustering.h
+field_cut.h
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/field_cut.h
+Player.hpp
+/media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/Player.hpp
 
 /media/abel/DATA/Cours/3A/INF573 Analyse d'images .../Project/football_track_ai3el/src/maxflow/block.h
 block.h
